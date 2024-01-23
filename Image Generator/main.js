@@ -1,6 +1,6 @@
 import { renderImages, fetchRandomImages } from './data-images.js';
 
-window.addEventListener("load",function(){
+window.addEventListener("load", function () {
     const loader = document.querySelector(".loader");
     loader.className += " hidden";
 })
@@ -64,7 +64,7 @@ searchInput.addEventListener('input', async function () {
         try {
             const response = await fetch(`https://api.unsplash.com/search/photos?page=1&query=${inputValue}&client_id=ti8c27SmNez6qe6WmtC5qq9kMh1KCPvZu0dG7B8YrQI&per_page=5`);
 
-            if(!response.ok){
+            if (!response.ok) {
                 window.alert("Error fetching random images. Please try again in an hour.");
                 throw new Error('Network response was not ok');
             }

@@ -1,6 +1,6 @@
 export function renderImages(data) {
     const slider = document.querySelector('.slider');
-    slider.innerHTML = ''; 
+    slider.innerHTML = '';
 
     data.forEach((item) => {
         const listItem = document.createElement('li');
@@ -20,9 +20,9 @@ export function renderImages(data) {
         description.textContent = item.description || '';
 
         const button = document.createElement('a');
-        button.href =item.links.html;
+        button.href = item.links.html;
         button.textContent = 'View';
-        button.setAttribute('target','blank')
+        button.setAttribute('target', 'blank')
 
         content.appendChild(title);
         content.appendChild(description);
@@ -37,8 +37,8 @@ export function renderImages(data) {
 export async function fetchRandomImages() {
     try {
         const response = await fetch('https://api.unsplash.com/photos/random?count=5&client_id=ti8c27SmNez6qe6WmtC5qq9kMh1KCPvZu0dG7B8YrQI');
-        
-        if(!response.ok){
+
+        if (!response.ok) {
             window.alert("Error fetching random images. Please try again in an hour.");
             throw new Error('Network response was not ok');
         }
