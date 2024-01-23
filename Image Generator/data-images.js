@@ -37,6 +37,12 @@ export function renderImages(data) {
 export async function fetchRandomImages() {
     try {
         const response = await fetch('https://api.unsplash.com/photos/random?count=5&client_id=ti8c27SmNez6qe6WmtC5qq9kMh1KCPvZu0dG7B8YrQI');
+        
+        if(!response.ok){
+            window.alert("Error fetching random images. Please try again in an hour.");
+            throw new Error('Network response was not ok');
+        }
+
         const data = await response.json();
         renderImages(data);
     } catch (error) {

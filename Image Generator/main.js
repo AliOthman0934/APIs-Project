@@ -1,9 +1,14 @@
 import { renderImages, fetchRandomImages } from './data-images.js';
 
+window.addEventListener("load",function(){
+    const loader = document.querySelector(".loader");
+    loader.className += " hidden";
+})
+
 window.addEventListener('load', fetchRandomImages);
 
 const section = document.createElement('section');
-section.className = 'favorite';
+section.className = 'Random-Images';
 
 const box = document.createElement('div');
 box.className = 'box';
@@ -58,6 +63,12 @@ searchInput.addEventListener('input', async function () {
 
         try {
             const response = await fetch(`https://api.unsplash.com/search/photos?page=1&query=${inputValue}&client_id=ti8c27SmNez6qe6WmtC5qq9kMh1KCPvZu0dG7B8YrQI&per_page=5`);
+
+            if(!response.ok){
+                window.alert("Error fetching random images. Please try again in an hour.");
+                throw new Error('Network response was not ok');
+            }
+
             const searchData = await response.json();
             renderImages(searchData.results);
         } catch (error) {
